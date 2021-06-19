@@ -16,7 +16,8 @@ function initCanvas(){
     var cW = ctx.canvas.width; 
     var cH = ctx.canvas.height;
 
- 
+ // plantilla para las naves
+
     var enemigoTemplate = function(options){
         return {
             id: options.id || '',
@@ -28,6 +29,7 @@ function initCanvas(){
         }
     }
 
+// forma de crear enemigos.
     var enemies = [
                    new enemigoTemplate({id: "Enemigo 1", x: 100, y: -20, w: 50, h: 30 }),
                    new enemigoTemplate({id: "Enemigo 2", x: 225, y: -20, w: 50, h: 30 }),
@@ -53,18 +55,20 @@ function initCanvas(){
                    new enemigoTemplate({ id: "Enemigo 20", x: 600, y: -200, w: 50, h: 30, image: enemigoEsp2 })
                   ];
 
+// permite renderizar más enemigos 
 
-                  
     var renderEnemies = function (enemigoList) {
         for (var i = 0; i < enemigoList.length; i++) {
             console.log(enemigoList[i]);
             ctx.drawImage(enemigoList[i].image, enemigoList[i].x, enemigoList[i].y += .5, enemigoList[i].w, enemigoList[i].h);
             
+// Detecta cuando los barcos alcanzan un nivel inferior
             lanzacoete.hitDetectLowerLevel(enemigoList[i]);
         }
     }
 
     class Lanzacoetes {
+        // ubicación de balas
         constructor() {
 
             this.y = 500,
@@ -104,7 +108,7 @@ function initCanvas(){
                         this.misiles.splice(i, 1);
                     }
                 }
-
+            // cuando el jugador gana
                 if (enemies.length === 0) {
                     clearInterval(animarInterval);
                     ctx.fillStyle = 'yellow';
@@ -112,7 +116,7 @@ function initCanvas(){
                     ctx.fillText('Destruiste a los Alienigenas', cW * .5 - 80, 50);
                 }
             };
-
+           // Detectar  el impacto de la bala
             this.hitDetect = function (m, mi) {
                 console.log('especial');
                 for (var i = 0; i < enemies.length; i++) {
@@ -128,6 +132,7 @@ function initCanvas(){
                 }
             };
 
+       // Pregunta a la nave del jugador si un enemigo ha pasado o ha golpeado la nave del jugador
             this.hitDetectLowerLevel = function (enemigo) {
 
                 if (enemigo.y > 550) {
@@ -252,6 +257,7 @@ function initCanvas(){
          }
     });
 
+   // contrl de botones
    
     izquierda_btn.addEventListener('mousedown', function(event) {
         lanzacoete.direccion = 'izquierda';

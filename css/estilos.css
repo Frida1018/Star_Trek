@@ -25,6 +25,16 @@
         margin: auto;
         position: relative;
     }
+    .barra {
+        background-color:#270404;
+        color: #ffffff;
+        font-size: 20px;
+        height: 40px; width: 800px;
+      }
+      #canvas{ 
+        background:#2f0202c9; 
+        border:rgb(47, 2, 2) 1px solid; 
+      }
     .caja_trasera{
         width: 100%;
         padding: 10px 20px;
@@ -62,7 +72,7 @@
 
     .caja_trasera button:hover{
         background: #fff;
-        color: #5499C7;
+        color: #200305;
     }
 
 
